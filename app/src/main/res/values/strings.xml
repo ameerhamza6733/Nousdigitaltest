@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Nousdigital test by hamza</string>
+    <string name="baseUrl">https://cloud.nousdigital.net</string>
+    <string name="jsonFileUrl">https://cloud.nousdigital.net/s/Njedq4WpjWz4KKk/download</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_title">Search</string>
+</resources>
