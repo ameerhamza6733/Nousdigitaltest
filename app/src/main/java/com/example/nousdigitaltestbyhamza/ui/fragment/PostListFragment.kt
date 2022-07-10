@@ -37,10 +37,6 @@ class PostListFragment : FragmentBase(R.layout.fragment_post_list) {
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
-    override fun initViews() {
-        super.initViews()
-
-    }
 
    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.options_menu, menu)
