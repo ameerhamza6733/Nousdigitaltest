@@ -9,6 +9,6 @@ kotlin coroutine\
 Room DataBase\
 Dependency injection with hilt\
 android navigation components\
-DayNight theme  to test dark theme your device must dark theme feature older devices don't have dark theme support. 
+DayNight theme  to test dark theme your device must hava dark theme feature, older devices don't have dark theme support. 
 
 
