@@ -34,7 +34,7 @@ class PostListFragmentViewModel @Inject constructor(
         downloadFileFromNetwork()
     }
 
-    private fun downloadFileFromNetwork() {
+     fun downloadFileFromNetwork() {
         Log("downloadFileFromNetwork()")
         _mutableLiveData.value = Resource.Loading()
         viewModelScope.launch(Dispatchers.IO) {

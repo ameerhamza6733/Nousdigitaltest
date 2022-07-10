@@ -12,6 +12,13 @@
         android:id="@+id/progress_circular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/no_search_result"
+        android:visibility="invisible"
+        android:text="No search result"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
   <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/postRecylerView"
       android:layout_width="match_parent"
