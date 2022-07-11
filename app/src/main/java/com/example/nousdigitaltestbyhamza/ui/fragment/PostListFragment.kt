@@ -4,6 +4,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.widget.SearchView
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -23,7 +24,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class PostListFragment : FragmentBase(R.layout.fragment_post_list) {
-    private lateinit var searchView: SearchView
+
     private val binding by viewBinding (FragmentPostListBinding::bind)
     private val viewModel by viewModels<PostListFragmentViewModel> ()
     private var postAdupter: PostAdupter?=null
@@ -32,7 +33,7 @@ class PostListFragment : FragmentBase(R.layout.fragment_post_list) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -43,46 +44,16 @@ class PostListFragment : FragmentBase(R.layout.fragment_post_list) {
 
     override fun initViews() {
         super.initViews()
+        viewModel.searchText?.let {
+
+            binding.search.setText(it)
+
+        }
+        binding.search.addTextChangedListener {
+            viewModel.search(it?.toString())
+        }
 
     }
-   @Deprecated("Deprecated in Java")
-   override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-       Log("onCreateOptionsMenu")
-        inflater.inflate(R.menu.options_menu, menu)
-       // Associate searchable configuration with the SearchView
-       val searchViewMenuItem = menu.findItem(R.id.search)
-       searchView= searchViewMenuItem.actionView as SearchView
-
-      searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
-           override fun onQueryTextSubmit(p0: String?): Boolean {
-               return false
-           }
-
-           override fun onQueryTextChange(p0: String?): Boolean {
-               viewModel.search(p0)
-              return false
-           }
-
-       })
-
-
-
-
-
-       searchView. post( ) {
-
-           viewModel.searchText?.let {
-
-               searchView.setQuery(it,false)
-
-           }
-
-       }
-       searchView.postDelayed(Runnable {
-           searchView.setIconified(false);
-       },5000)
-       super.onCreateOptionsMenu(menu!!, inflater)
-   }
 
     override fun initObserver() {
         super.initObserver()
