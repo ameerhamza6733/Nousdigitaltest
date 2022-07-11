@@ -50,8 +50,10 @@ class PostListFragment : FragmentBase(R.layout.fragment_post_list) {
 
         }
         binding.search.addTextChangedListener {
-            viewModel.search(it?.toString())
+           Log("text chnage ${it?.toString()}")
+            viewModel.search(it.toString())
         }
+
 
     }
 

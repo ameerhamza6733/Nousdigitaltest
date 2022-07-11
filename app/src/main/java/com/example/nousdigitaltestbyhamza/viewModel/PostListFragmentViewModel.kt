@@ -49,20 +49,20 @@ class PostListFragmentViewModel @Inject constructor(
     fun search(text: String?) {
         Log("search()")
         viewModelScope.launch(Dispatchers.IO) {
-            text?.let {
-                if (it.isNotEmpty()) {
+
+                if (text?.isNotEmpty()==true) {
                     searchText = text
-                    _mutableLiveData.postValue(Resource.Success(postSearchRepo.seearchByTitle(it),"title"))
-                    _mutableLiveData.postValue(Resource.Success(postSearchRepo.seearchByDes(it),"des"))
+                    _mutableLiveData.postValue(Resource.Success(postSearchRepo.seearchByTitle(text),"title"))
+                    _mutableLiveData.postValue(Resource.Success(postSearchRepo.seearchByDes(text),"des"))
                 }else{
-                    if (searchText?.isEmpty()==true){
+
                         searchText=""
                         _mutableLiveData.postValue(Resource.Success(postSearchRepo.getAllData(),"all date"))
 
-                    }
+
 
                 }
-            }
+
         }
     }
 
