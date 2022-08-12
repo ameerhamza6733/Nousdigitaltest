@@ -1,9 +1,7 @@
 package com.example.nousdigitaltestbyhamza.ui.fragment
 
-import android.net.Uri
 import android.view.View
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.nousdigitaltestbyhamza.R
@@ -11,16 +9,16 @@ import com.example.nousdigitaltestbyhamza.Resource
 import com.example.nousdigitaltestbyhamza.Utils
 import com.example.nousdigitaltestbyhamza.databinding.FragmentDetailBinding
 import com.example.nousdigitaltestbyhamza.model.Post
-import com.example.nousdigitaltestbyhamza.viewModel.DetailViewModel
+import com.example.nousdigitaltestbyhamza.viewModel.DetailFragmentViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 
 
 class DetailFragment : FragmentBase(R.layout.fragment_detail) {
-    private val binding by viewBinding (FragmentDetailBinding::bind)
-    private val viewModel by viewModels<DetailViewModel> ()
-    private var post:Post?=null
 
+    private val binding by viewBinding (FragmentDetailBinding::bind)
+    private val viewModel by viewModels<DetailFragmentViewModel> ()
+    private var post:Post?=null
 
     override fun initViews() {
         super.initViews()

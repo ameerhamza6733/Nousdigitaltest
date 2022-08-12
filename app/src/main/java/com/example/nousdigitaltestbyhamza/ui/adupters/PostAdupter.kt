@@ -24,7 +24,7 @@ class PostAdupter(val list: List<Post> ,private val onItemClicked: (Post,Int) ->
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = RowPostBinding.inflate(LayoutInflater.from(parent.getContext()),parent,false)
+        val binding = RowPostBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return ViewHolder(binding)
     }
 

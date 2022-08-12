@@ -24,7 +24,7 @@ import javax.inject.Inject
 class FileRepository @Inject constructor(
     private val api: ApiInterface,
     @ApplicationContext private val appContext: Context,
-    private val postDb:PostDataBase
+    private val postDb: PostDataBase
 ) {
     private val TAG = "FileRepose"
     suspend fun downloadJsonFile(url: String): Resource<List<Post>> {
@@ -37,34 +37,23 @@ class FileRepository @Inject constructor(
                     val list = parsePosts(jsonString)
                     postDb.postDao().insertAll(list)
                     return Resource.Success(list)
-
-
                 } else {
-
                     return Resource.Error(null, -1, "we don't find any data")
-
                 }
-
             } else {
                 return Resource.Error(
                     null,
                     reponse.code(),
                     Utils.parseErrorBody(reponse.errorBody()?.string())
                 )
-
-
             }
         } catch (jsonEx: JSONException) {
             jsonEx.printStackTrace()
             return Resource.Error(jsonEx, -1, jsonEx.message.toString())
-
         } catch (e: Exception) {
             e.printStackTrace()
             return Resource.Error(e, -1, e.message.toString())
-
         }
-
-
     }
 
     @Throws(JSONException::class)
@@ -99,7 +88,6 @@ class FileRepository @Inject constructor(
 
         return list
     }
-
 
     fun downloadImage(url: String, onSuccess: (Bitmap) -> Unit, onFailer: (Exception) -> Unit) {
         Glide.with(appContext)

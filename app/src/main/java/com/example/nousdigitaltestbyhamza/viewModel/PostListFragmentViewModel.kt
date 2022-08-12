@@ -16,6 +16,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+
 @HiltViewModel
 class PostListFragmentViewModel @Inject constructor(
     @ApplicationContext private val appContext: Context,
@@ -34,13 +35,12 @@ class PostListFragmentViewModel @Inject constructor(
         downloadFileFromNetwork()
     }
 
-     fun downloadFileFromNetwork() {
+    fun downloadFileFromNetwork() {
         Log("downloadFileFromNetwork()")
         _mutableLiveData.value = Resource.Loading()
         viewModelScope.launch(Dispatchers.IO) {
             val downloadingFileUrl = appContext.getString(R.string.jsonFileUrl)
             val reponse = fileRepository.downloadJsonFile(downloadingFileUrl)
-
             _mutableLiveData.postValue(reponse)
 
         }
@@ -49,20 +49,29 @@ class PostListFragmentViewModel @Inject constructor(
     fun search(text: String?) {
         Log("search()")
         viewModelScope.launch(Dispatchers.IO) {
-
-                if (text?.isNotEmpty()==true) {
-                    searchText = text
-                    _mutableLiveData.postValue(Resource.Success(postSearchRepo.seearchByTitle(text),"title"))
-                    _mutableLiveData.postValue(Resource.Success(postSearchRepo.seearchByDes(text),"des"))
-                }else{
-
-                        searchText=""
-                        _mutableLiveData.postValue(Resource.Success(postSearchRepo.getAllData(),"all date"))
-
-
-
-                }
-
+            if (text?.isNotEmpty() == true) {
+                searchText = text
+                _mutableLiveData.postValue(
+                    Resource.Success(
+                        postSearchRepo.searchByTitle(text),
+                        "title"
+                    )
+                )
+                _mutableLiveData.postValue(
+                    Resource.Success(
+                        postSearchRepo.searchByDescription(text),
+                        "des"
+                    )
+                )
+            } else {
+                searchText = ""
+                _mutableLiveData.postValue(
+                    Resource.Success(
+                        postSearchRepo.getAllData(),
+                        "all date"
+                    )
+                )
+            }
         }
     }
 

@@ -12,7 +12,7 @@ class PostSearchRepo @Inject constructor(
     private val postDb: PostDataBase
 ) {
 
-    suspend fun seearchByTitle(txt:String): List<Post> {
+    suspend fun searchByTitle(txt:String): List<Post> {
        return postDb.postDao().fillter(txt)
     }
 
@@ -20,7 +20,7 @@ class PostSearchRepo @Inject constructor(
         return postDb.postDao().getAllPost()
     }
 
-    suspend fun seearchByDes(txt:String): List<Post> {
+    suspend fun searchByDescription(txt:String): List<Post> {
        return postDb.postDao().fillterByDes(txt)
     }
 }

@@ -31,11 +31,6 @@ class PostListFragment : FragmentBase(R.layout.fragment_post_list) {
     private var layoutManager:GridLayoutManager?=null
     private var observerPost: Observer<Resource<List<Post>>>?=null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

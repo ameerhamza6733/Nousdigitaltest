@@ -14,11 +14,6 @@ open class FragmentBase(@LayoutRes layout:Int) :Fragment(layout)  {
     open val shareViewModel by activityViewModels<SharedViewModel> ()
     private var attachObvers=false
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews()

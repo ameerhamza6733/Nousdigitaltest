@@ -9,5 +9,5 @@ import retrofit2.http.Url
 interface ApiInterface {
     @Streaming
     @GET
-    suspend fun downloadJsonFile(@Url fileUrl:String): Response<ResponseBody>
+    suspend fun downloadJsonFile(@Url fileUrl: String): Response<ResponseBody>
 }

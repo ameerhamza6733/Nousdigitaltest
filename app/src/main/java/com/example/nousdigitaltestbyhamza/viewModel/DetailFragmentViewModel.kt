@@ -16,11 +16,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.lang.Exception
 import javax.inject.Inject
 
 @HiltViewModel
-class DetailViewModel @Inject constructor(
+class DetailFragmentViewModel @Inject constructor(
     @ApplicationContext private val applicationContext: Context,
     private val fileRepository: FileRepository
 ) :
@@ -32,9 +31,7 @@ class DetailViewModel @Inject constructor(
     fun preparTheImageForEmail(url: String) {
         mutableLiveData.value = Resource.Loading()
         viewModelScope.launch(Dispatchers.IO) {
-
             fileRepository.downloadImage(url, {
-
                 try {
                     val newFile = FileUtils.createImageFile(applicationContext = applicationContext)
                     it.writerToFile(file = newFile)
@@ -43,12 +40,10 @@ class DetailViewModel @Inject constructor(
                         "com.example.nousdigitaltestbyhamza.fileprovider",
                         newFile
                     )
-                    Log("uri ${contentUri.toString()}")
+                    Log("uri $contentUri")
                     mutableLiveData.postValue(Resource.Success(contentUri))
-
-                }catch (E:Exception){
+                } catch (E: Exception) {
                     mutableLiveData.postValue(Resource.Error(E, -1, E.message.toString()))
-
                 }
             }, {
                 it.printStackTrace()
