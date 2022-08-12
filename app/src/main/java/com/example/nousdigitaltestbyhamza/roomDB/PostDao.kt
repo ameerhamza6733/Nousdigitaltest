@@ -13,10 +13,10 @@ interface PostDao {
     fun insertAll( post: List<Post>)
 
     @Query("SELECT * FROM post WHERE title LIKE '%' || :value  || '%'")
-    fun fillter(value: String): List<Post>
+    fun filter(value: String): List<Post>
 
     @Query("SELECT * FROM post WHERE postDescription LIKE '%' || :value  || '%'")
-    fun fillterByDes(value: String): List<Post>
+    fun filterByDes(value: String): List<Post>
 
     @Query("SELECT * FROM post ")
     fun getAllPost(): List<Post>

@@ -42,7 +42,6 @@ class PostListFragmentViewModel @Inject constructor(
             val downloadingFileUrl = appContext.getString(R.string.jsonFileUrl)
             val reponse = fileRepository.downloadJsonFile(downloadingFileUrl)
             _mutableLiveData.postValue(reponse)
-
         }
     }
 

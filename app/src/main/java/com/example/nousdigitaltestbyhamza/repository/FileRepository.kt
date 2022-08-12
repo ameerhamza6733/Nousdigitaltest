@@ -55,7 +55,7 @@ class FileRepository @Inject constructor(
             return Resource.Error(e, -1, e.message.toString())
         }
     }
-
+    //we also use gson  parse post directly from api
     @Throws(JSONException::class)
     private fun parsePosts(jsonString: String): List<Post> {
         val list: ArrayList<Post> = ArrayList()
@@ -82,14 +82,12 @@ class FileRepository @Inject constructor(
             } else {
                 null
             }
-
             list.add(Post(postId, postTitle, postDescription, postImageUrl))
         }
-
         return list
     }
 
-    fun downloadImage(url: String, onSuccess: (Bitmap) -> Unit, onFailer: (Exception) -> Unit) {
+    fun downloadImage(url: String, onSuccess: (Bitmap) -> Unit, onFailure: (Exception) -> Unit) {
         Glide.with(appContext)
             .asBitmap()
             .load(url)
@@ -101,7 +99,7 @@ class FileRepository @Inject constructor(
                     target: Target<Bitmap>?,
                     isFirstResource: Boolean
                 ): Boolean {
-                    e?.let { onFailer(it) }
+                    e?.let { onFailure(it) }
                     return false
                 }
 

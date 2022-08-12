@@ -2,7 +2,6 @@ package com.example.nousdigitaltestbyhamza.repository
 
 import android.content.Context
 import com.example.nousdigitaltestbyhamza.model.Post
-import com.example.nousdigitaltestbyhamza.network.ApiInterface
 import com.example.nousdigitaltestbyhamza.roomDB.PostDataBase
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
@@ -13,7 +12,7 @@ class PostSearchRepo @Inject constructor(
 ) {
 
     suspend fun searchByTitle(txt:String): List<Post> {
-       return postDb.postDao().fillter(txt)
+       return postDb.postDao().filter(txt)
     }
 
     suspend fun getAllData():List<Post>{
@@ -21,6 +20,6 @@ class PostSearchRepo @Inject constructor(
     }
 
     suspend fun searchByDescription(txt:String): List<Post> {
-       return postDb.postDao().fillterByDes(txt)
+       return postDb.postDao().filterByDes(txt)
     }
 }

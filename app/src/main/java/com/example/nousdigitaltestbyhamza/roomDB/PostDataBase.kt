@@ -7,5 +7,4 @@ import com.example.nousdigitaltestbyhamza.model.Post
 @Database(entities = [Post::class], version = 1)
 abstract class PostDataBase : RoomDatabase() {
     abstract fun postDao(): PostDao
-
 }
